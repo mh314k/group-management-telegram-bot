@@ -6,12 +6,9 @@ botDispatcher = botUpdater.dispatcher
 
 
 def sticker_recived(bot: Bot, update: Update):
-    fromAdmin = False
-    for admin in bot.get_chat_administrators(chat_id=update.message.chat_id):
-        if admin.user.id == update.message.from_user.id:
-            fromAdmin = True
-    if not fromAdmin:
-        bot.delete_message(chat_id=update.message.chat_id, message_id=update.message.message_id, timeout=1)
+    admins = [admin.user.id for admin in bot.get_chat_administrators(chat_id=update.message.chat_id)]
+    if update.message.from_user.id not in admins:
+        bot.delete_message(chat_id=update.message.chat_id, message_id=update.message.message_id, timeout=0)
 
 
 stickerRecivedHandeler = MessageHandler(Filters.sticker, sticker_recived)
