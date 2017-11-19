@@ -1,7 +1,7 @@
 from telegram.ext import Updater,MessageHandler,Filters
 from telegram import Bot,Update
 
-botUpdater = Updater(token="471374479:AAE7eprFR-9wRcArZQvEJiG2rupZGEamUe0")
+botUpdater = Updater(token="token from @botfather")
 botDispatcher = botUpdater.dispatcher
 
 
